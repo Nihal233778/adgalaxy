@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Watch Ad</title>
+    <!-- AdsGalaxy SDK (Your ID is 65) -->
+    <script src="https://app.adsgalaxy.online/sdk.js?id=65"></script>
+</head>
+<body style="text-align: center; padding-top: 50px; font-family: sans-serif;">
+    
+    <h2>Watch Ad & Earn</h2>
+    <button id="btn" onclick="playAd()" style="padding: 15px 30px; font-size: 18px;">Watch Ad</button>
+    <p id="msg"></p>
+
+    <script>
+        function playAd() {
+            document.getElementById('msg').innerText = "Loading...";
+            document.getElementById('btn').disabled = true;
+
+            // Trigger the Ad
+            window.showAdsGalaxy()
+                .then(() => {
+                    document.getElementById('msg').innerText = "Ad finished! Check your backend.";
+                    document.getElementById('btn').innerText = "Done";
+                })
+                .catch((e) => {
+                    document.getElementById('msg').innerText = "Ad failed or closed.";
+                    document.getElementById('btn').disabled = false;
+                });
+        }
+    </script>
+</body>
+</html>
